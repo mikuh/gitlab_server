@@ -56,15 +56,15 @@ docker exec -it gitlab-runner gitlab-runner register --non-interactive --registr
 这样便是搭建好了，使用 `https://gitlab.example.com`就可以访问我们的gitlab了，第一次登陆的时候会要求我们设置root用户的密码。
 web启动的比较慢...这个需要一些耐心
 
-![首次访问](imgs/1.png)
+![首次访问](./imgs/1.png)
 
 设置了密码之后，我们登陆gitlab，创建一个项目，如下：
-![创建项目](imgs/2.png)
+![创建项目](./imgs/2.png)
 
 我们进入settings->CI/CD Runners的设置：
-![](imgs/3.png)
+![](./imgs/3.png)
 点进去，获取我们注册gitlab-runner所需要的信息：
-![](imgs/4.png)
+![](./imgs/4.png)
 
 然后运行下面的语句，注册gitlab-runner:
 记得把registration-token 和 url 参数替换成自己的。
