@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: web
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://deepwell.imwork.net'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        # Add any other gitlab.rb configuration here, each on its own line
+        unicorn['socket'] = '/opt/gitlab/var/unicorn/gitlab.socket'
+    ports:
+      - '8929:80'
+      - '443:443'
+      - '2224:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    networks:
+      - gitlab-network
+
+
+  gitlab-runner:
+    image: 'gitlab/gitlab-runner:latest'
+    container_name: 'gitlab-runner'
+    hostname: gitlab-runner
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './gitlab-runner/config:/etc/gitlab-runner'
+    networks:
+      - gitlab-network
+
+
+networks:
+  gitlab-network:
+    name: gitlab-network
+
