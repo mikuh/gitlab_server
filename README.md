@@ -54,6 +54,7 @@ docker exec -it gitlab-runner gitlab-runner register --non-interactive --registr
 ```
 
 这样便是搭建好了，使用 `https://gitlab.example.com`就可以访问我们的gitlab了，第一次登陆的时候会要求我们设置root用户的密码。
+web启动的比较慢...这个需要一些耐心
 
 ![首次访问](imgs/1.png)
 
